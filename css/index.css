@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+img {
+  width: 300px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.google-log {
+  border: 3px solid rgb(0, 64, 255);
+  border-radius: 8px;
+  color: rgb(0, 64, 255);
+  width: 60%;
+}
+
+.google-log:hover {
+  color: white;
+  background-color: rgb(0, 64, 255);
+}
+
+.bad-input {
+  outline-style: solid;
+  outline-color: red;
+}
+
+.log-container {
+  width: 500px;
+  margin-bottom: 30px;
+}
+
+.log-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.card-body {
+  width: 600px;
+}
+
+.normal-log {
+  font-weight: bold;
+  background-color: rgb(0, 119, 255);
+  color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.normal-log:hover {
+  background-color: blue;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 30px;
+}
