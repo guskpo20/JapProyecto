@@ -38,6 +38,11 @@ button {
   outline-color: red;
 }
 
+.input-style-none {
+  border-radius: 5px;
+  border: none;
+}
+
 .log-container {
   width: 500px;
   margin-bottom: 30px;
@@ -86,4 +91,13 @@ footer {
   bottom: 0;
   left: 0;
   margin-left: 30px;
+}
+
+.error {
+  display: none;
+}
+
+#error {
+  color: red;
+  font-weight: bold;
 }
