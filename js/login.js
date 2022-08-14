@@ -6,7 +6,7 @@ form.addEventListener('submit', (e) => {
   let user = document.getElementById('email');
   let pass = document.getElementById('password');
   if (user.value && pass.value) {
-    window.location.href = '/JapProyect/home.html';
+    window.location.href = '/JapProyecto/home.html';
     errorMsg.innerHTML = '';
   } else {
     if (!user.value) {
