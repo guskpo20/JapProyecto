@@ -6,6 +6,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta
+      name="google-signin-client_id"
+      content="981354369546-q5gculqpjrnv57pglfgtg88otmmpl3ir.apps.googleusercontent.com"
+    />
+    <!-- este meta tag contiene el id de cliente para la autenticacion de google-->
     <title>eMercado - Todo lo que busques está aquí</title>
 
     <link
@@ -14,6 +19,8 @@
     />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/index.css" rel="stylesheet" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--Scripts necesarios para el login de google-->
   </head>
 
   <body>
@@ -22,7 +29,12 @@
         <div class="log-header">
           <img src="img/login.png" alt="" />
           <h3>Inicio de Sesion</h3>
-          <button class="google-log">Ingresar Via Google</button>
+          <div
+            class="g-signin2"
+            data-onsuccess="onSignIn"
+            data-theme="dark"
+          ></div>
+          <!-- Boton de login google-->
         </div>
         <hr />
         <form id="logForm" class="flex-link">
