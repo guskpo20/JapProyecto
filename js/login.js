@@ -53,9 +53,6 @@ function handleCredentialResponse(response) {
   console.log('Family Name: ' + responsePayload.family_name);
   console.log('Image URL: ' + responsePayload.picture);
   console.log('Email: ' + responsePayload.email);
-  prompt(
-    'Hola ' + responsePayload.name + ', su correo es ' + responsePayload.email
-  );
   window.location.href = '/JapProyecto/home.html';
 }
 
