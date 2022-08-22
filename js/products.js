@@ -5,7 +5,6 @@ async function getData() {
     'https://japceibal.github.io/emercado-api/cats_products/101.json'
   );
   let data = await promise.json();
-  console.log(data.products);
   setHtml(data.products);
 }
 
