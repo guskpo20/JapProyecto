@@ -89,10 +89,13 @@ filtrarBtn.addEventListener('click', () => {
     let elementos = document.getElementsByClassName('item');
     for (const elemento of elementos) {
       let costo = elemento.getElementsByClassName('costo')[0].innerText;
-      if (costo < rangoMin.value || costo > rangoMax.value) {
-        elemento.style.display = 'none';
-      } else {
+      if (
+        parseInt(costo) >= rangoMin.value &&
+        parseInt(costo) <= rangoMax.value
+      ) {
         elemento.style.display = 'flex';
+      } else {
+        elemento.style.display = 'none';
       }
     }
   }
