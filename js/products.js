@@ -42,7 +42,7 @@ contAlfabeticoBtn.addEventListener('click', () => {
   ordenarListar(false);
 });
 
-function ordenarListar(alfabetico) {
+function ordenarListar(enOrden) {
   let elementos, i, cambiando, b, deboCambiar;
   elementos = document.getElementsByClassName('item');
   cambiando = true;
@@ -52,19 +52,19 @@ function ordenarListar(alfabetico) {
     for (i = 0; i < b.length - 1; i++) {
       deboCambiar = false;
 
-      if (alfabetico) {
+      if (enOrden) {
         if (
           //se cumple este if,sale del for y cambia los elementos de lugar
-          b[i].getElementsByTagName('h3')[0].innerHTML.toLowerCase() >
-          b[i + 1].getElementsByTagName('h3')[0].innerHTML.toLowerCase()
+          b[i].getElementsByClassName('costo')[0].innerHTML.toLowerCase() >
+          b[i + 1].getElementsByClassName('costo')[0].innerHTML.toLowerCase()
         ) {
           deboCambiar = true;
           break;
         }
-      } else if (!alfabetico) {
+      } else if (!enOrden) {
         if (
-          b[i].getElementsByTagName('h3')[0].innerHTML.toLowerCase() <
-          b[i + 1].getElementsByTagName('h3')[0].innerHTML.toLowerCase()
+          b[i].getElementsByClassName('costo')[0].innerHTML.toLowerCase() <
+          b[i + 1].getElementsByClassName('costo')[0].innerHTML.toLowerCase()
         ) {
           deboCambiar = true;
           break;
