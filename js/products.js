@@ -10,12 +10,14 @@ async function getData() {
   nombreCat.innerText = data.catName;
   setHtml(data.products);
 }
+let ids = [];
 
 function setHtml(data) {
   itemsContainer.innerHTML = '';
   for (const car of data) {
     itemsContainer.innerHTML += `
-        <div class="item">
+    
+          <a  class="item" id="${car.id}">
             <img src="${car.image}" alt="Foto de ${car.name}" />
             <div class="item-info">
                 <div class="item-info-primerRenglon">
@@ -24,12 +26,23 @@ function setHtml(data) {
                 </div>
                 <p class="descriptionItem">${car.description}</p>
             </div>
-        </div>
+          </a>
         `;
+    ids.push(car.id);
+    for (const id of ids) {
+      let item = document.getElementById(id);
+      item.addEventListener('click', () => {
+        localStorage.setItem('itemID', id);
+        window.location.href = '../product-info.html';
+      });
+    }
   }
 }
 
 getData();
+
+//ponerles un eventlistener que guarde el id del clickeado
+
 //botones de ordenar alfabetico
 let alfabeticoBtn = document.getElementById('sortAsc');
 let contAlfabeticoBtn = document.getElementById('sortDesc');

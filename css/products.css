@@ -40,6 +40,8 @@ img {
   flex-direction: row;
   border: 2px solid rgba(128, 128, 128, 0.388);
   width: 75%;
+  text-decoration: none;
+  color: black;
 }
 
 .item-info {

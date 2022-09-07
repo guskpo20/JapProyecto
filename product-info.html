@@ -15,6 +15,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/product-info.css" />
   </head>
 
   <body>
@@ -48,9 +49,38 @@
       </div>
     </nav>
     <main>
-      <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div id="container">
+        <div class="product">
+          <div class="imgContainer"></div>
+        </div>
+      </div>
+
+      <div id="commentsContainer">
+        <h3>Comentarios</h3>
+        <div id="comments"></div>
+        <div id="newComment">
+          <form action="">
+            <h4>Comentar</h4>
+            <div><label for="opinion">Tu opinion:</label></div>
+            <textarea
+              name="opinion"
+              id="opinion"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <div><label for="puntuacion">Tu opinion:</label></div>
+            <div>
+              <select id="puntuacion" name="puntuacion">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <button id="enviarComent">Enviar</button>
+          </form>
         </div>
       </div>
     </main>
