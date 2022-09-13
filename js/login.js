@@ -4,7 +4,7 @@ const errorMsg = document.getElementById('error');
 //Hacer la funcion para chequear el localStorage localStorage.getItem('email') si ya existe redireccionar
 if (localStorage.getItem('email')) {
   console.log('Entramos');
-  window.location.href = '/JapProyecto/home.html';
+  window.location = 'home.html';
 }
 
 form.addEventListener('submit', (e) => {
@@ -13,7 +13,7 @@ form.addEventListener('submit', (e) => {
   let pass = document.getElementById('password');
   if (user.value && pass.value) {
     localStorage.setItem('email', user.value);
-    window.location.href = '/JapProyecto/home.html';
+    window.location = 'home.html';
     errorMsg.innerHTML = '';
   } else {
     if (!user.value) {
@@ -57,7 +57,7 @@ function handleCredentialResponse(response) {
   console.log('ID: ' + responsePayload.sub);
   console.log('Email: ' + responsePayload.email);
   localStorage.setItem('email', responsePayload.email);
-  window.location.href = '/JapProyecto/home.html';
+  window.location = 'home.html';
 }
 
 //Esta funcion no valida el token, solo extrae la parte del json que necesito con la info de google, puede haber sido manipulada

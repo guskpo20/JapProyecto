@@ -129,7 +129,7 @@ enviarComentBtn.addEventListener('click', (e) => {
     document.getElementById('puntuacion').value = '';
   } else {
     alert('Debes estas loggeado para comentar!');
-    window.location.href = '../index.html';
+    window.location = 'index.html';
   }
 });
 
