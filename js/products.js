@@ -33,7 +33,7 @@ function setHtml(data) {
       let item = document.getElementById(id);
       item.addEventListener('click', () => {
         localStorage.setItem('itemID', id);
-        window.location.href = '/JapProtecto/product-info.html';
+        window.location.href = '/JapProyecto/product-info.html';
       });
     }
   }
