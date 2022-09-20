@@ -57,3 +57,28 @@
 #newComment form button {
   width: 100px;
 }
+
+#relatedContainer {
+  margin-top: 50px;
+}
+
+#relatedProductsContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#carouselExampleControls {
+  width: 300px;
+}
+
+.tituloRelated {
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+#carouselExampleControls button {
+  margin-top: 10px;
+}

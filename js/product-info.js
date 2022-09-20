@@ -2,6 +2,7 @@ let item = localStorage.getItem('itemID');
 let container = document.getElementById('container');
 let comentariosContainer = document.getElementById('comments');
 let enviarComentBtn = document.getElementById('enviarComent');
+let relatedContainer = document.getElementById('relatedContainer');
 
 async function getProduct(id) {
   let product = await fetch(
@@ -61,9 +62,36 @@ async function getProduct(id) {
       </div>
   
   `;
+  let productosRelacionados = product.relatedProducts;
+  for (let i = 0; i < productosRelacionados.length; i++) {
+    if (i === 0) {
+      relatedContainer.innerHTML = `
+      <div class="carousel-item active">
+              <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>${productosRelacionados[i].name}</h5>
+                <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
+              </div>
+            </div>`;
+    } else {
+      relatedContainer.innerHTML += `
+      <div class="carousel-item">
+              <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>${productosRelacionados[i].name}</h5>
+                <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
+              </div>
+            </div>`;
+    }
+  }
 }
 
 getProduct(item);
+
+function guardarId(relatedId) {
+  localStorage.setItem('itemID', relatedId);
+  window.location = 'product-info.html';
+}
 
 enviarComentBtn.addEventListener('click', (e) => {
   e.preventDefault();

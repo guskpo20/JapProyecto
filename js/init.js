@@ -46,12 +46,18 @@ let getJSONData = function (url) {
 let showUser = function () {
   let email = localStorage.getItem('email');
   try {
-    let li = document.getElementsByClassName('nav-item');
+    let li = document.getElementById('dropdownMenuButton1');
     if (email) {
-      li = li[li.length - 1];
-      li.innerHTML = `<a href="" class="nav-link">${email}</a>`;
+      li.innerHTML = `${email}`;
     }
   } catch {}
 };
+
+let logOutBtn = document.getElementById('logOut');
+logOutBtn.addEventListener('click', (e) => {
+  e.preventDefault;
+  localStorage.removeItem('email');
+  window.location = 'index.html';
+});
 
 showUser();
