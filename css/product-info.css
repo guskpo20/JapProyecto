@@ -86,3 +86,8 @@
 .relatedName {
   background-color: rgba(1, 1, 1, 0.547);
 }
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: black;
+}
