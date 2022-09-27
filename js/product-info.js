@@ -69,7 +69,7 @@ async function getProduct(id) {
       <div class="carousel-item active">
               <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
               <div class="carousel-caption d-none d-md-block">
-                <h5>${productosRelacionados[i].name}</h5>
+                <h5 class="relatedName">${productosRelacionados[i].name}</h5>
                 <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
               </div>
             </div>`;
@@ -78,7 +78,7 @@ async function getProduct(id) {
       <div class="carousel-item">
               <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
               <div class="carousel-caption d-none d-md-block">
-                <h5>${productosRelacionados[i].name}</h5>
+                <h5 class="relatedName">${productosRelacionados[i].name}</h5>
                 <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
               </div>
             </div>`;
