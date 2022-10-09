@@ -3,6 +3,7 @@ let container = document.getElementById('container');
 let comentariosContainer = document.getElementById('comments');
 let enviarComentBtn = document.getElementById('enviarComent');
 let relatedContainer = document.getElementById('relatedContainer');
+let comprarBtn = '';
 
 async function getProduct(id) {
   let product = await fetch(
@@ -43,7 +44,11 @@ async function getProduct(id) {
   container.innerHTML = `
   <div class="product">
   <div class="productInfo">
-          <h2>${product.name}</h2>
+          <div class="d-flex justify-content-between">
+            <h2>${product.name}</h2>
+            <button id="agregarAlCarrito" class="agregaAlCarrito">Comprar</button>
+          </div>
+          <h4 id="mensajeComprado" class="sacarAgregadoAlCarrito">Agregado al Carrito</h4>
           <hr/>
           <b>Precio</b>
           <p>${product.currency} ${product.cost}</p>
@@ -62,6 +67,35 @@ async function getProduct(id) {
       </div>
   
   `;
+  comprarBtn = document.getElementById('agregarAlCarrito');
+  comprarBtn.addEventListener('click', () => {
+    let newProduct = {
+      id: product.id,
+      name: product.name,
+      count: 1,
+      unitCost: product.cost,
+      currency: product.currency,
+      image: product.images[0],
+    };
+    console.log(newProduct);
+    if (JSON.parse(localStorage.getItem('carrito'))) {
+      let newCarrito = JSON.parse(localStorage.getItem('carrito'));
+      newCarrito = [...newCarrito, newProduct];
+      localStorage.setItem('carrito', JSON.stringify(newCarrito));
+    } else {
+      let newCarrito = [];
+      newCarrito.push(newProduct);
+      localStorage.setItem('carrito', JSON.stringify(newCarrito));
+    }
+
+    let mensaje = document.getElementById('mensajeComprado');
+    mensaje.classList.add('agregadoAlCarrito');
+    mensaje.classList.remove('sacarAgregadoAlCarrito');
+    setTimeout(() => {
+      mensaje.classList.remove('agregadoAlCarrito');
+      mensaje.classList.add('sacarAgregadoAlCarrito');
+    }, 2000);
+  });
   let productosRelacionados = product.relatedProducts;
   for (let i = 0; i < productosRelacionados.length; i++) {
     if (i === 0) {

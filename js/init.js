@@ -61,3 +61,13 @@ logOutBtn.addEventListener('click', (e) => {
 });
 
 showUser();
+
+function setData(datos) {
+  let data = JSON.parse(localStorage.getItem('carrito'));
+  if (!data) {
+    data = [];
+  } else {
+    data.push(datos);
+  }
+  localStorage.setItem('carrito', JSON.stringify(data));
+}

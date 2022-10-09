@@ -1,6 +1,7 @@
 .productInfo {
   margin-top: 20px;
   margin-left: 100px;
+  margin-right: 100px;
 }
 
 .imgContainer {
@@ -90,4 +91,30 @@
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: black;
+}
+
+.agregaAlCarrito {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+}
+
+.agregaAlCarrito:hover {
+  background-color: greenyellow;
+}
+
+.agregadoAlCarrito {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: green;
+  color: white;
+}
+
+.sacarAgregadoAlCarrito {
+  display: none;
 }
