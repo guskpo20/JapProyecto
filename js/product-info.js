@@ -69,25 +69,35 @@ async function getProduct(id) {
   `;
   comprarBtn = document.getElementById('agregarAlCarrito');
   comprarBtn.addEventListener('click', () => {
-    let newProduct = {
-      id: product.id,
-      name: product.name,
-      count: 1,
-      unitCost: product.cost,
-      currency: product.currency,
-      image: product.images[0],
-    };
-    console.log(newProduct);
-    if (JSON.parse(localStorage.getItem('carrito'))) {
-      let newCarrito = JSON.parse(localStorage.getItem('carrito'));
-      newCarrito = [...newCarrito, newProduct];
-      localStorage.setItem('carrito', JSON.stringify(newCarrito));
-    } else {
-      let newCarrito = [];
-      newCarrito.push(newProduct);
-      localStorage.setItem('carrito', JSON.stringify(newCarrito));
+    let carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
+    let existente = false;
+    for (const arti of carrito) {
+      if (arti.id === product.id) {
+        existente = true;
+        arti.count++;
+      }
     }
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 
+    if (!existente) {
+      let newProduct = {
+        id: product.id,
+        name: product.name,
+        count: 1,
+        unitCost: product.cost,
+        currency: product.currency,
+        image: product.images[0],
+      };
+      if (JSON.parse(localStorage.getItem('carrito'))) {
+        let newCarrito = JSON.parse(localStorage.getItem('carrito'));
+        newCarrito = [...newCarrito, newProduct];
+        localStorage.setItem('carrito', JSON.stringify(newCarrito));
+      } else {
+        let newCarrito = [];
+        newCarrito.push(newProduct);
+        localStorage.setItem('carrito', JSON.stringify(newCarrito));
+      }
+    }
     let mensaje = document.getElementById('mensajeComprado');
     mensaje.classList.add('agregadoAlCarrito');
     mensaje.classList.remove('sacarAgregadoAlCarrito');
@@ -96,6 +106,7 @@ async function getProduct(id) {
       mensaje.classList.add('sacarAgregadoAlCarrito');
     }, 2000);
   });
+
   let productosRelacionados = product.relatedProducts;
   for (let i = 0; i < productosRelacionados.length; i++) {
     if (i === 0) {

@@ -49,7 +49,7 @@ function setCart(articulo) {
               <td class="align-middle">${articulo.name} </td>
               <td class="align-middle">USD <span id="valorUni">${articulo.unitCost}</span></td>
               <td class="align-middle">
-                <input min="1" value="1" class="inputAEscuchar" id="${articulo.id}" style="max-width: 50px" type="number"/>
+                <input min="1" value="${articulo.count}" class="inputAEscuchar" id="${articulo.id}" style="max-width: 50px" type="number"/>
               </td>
               <td class="align-middle">USD <span id="subTotal${articulo.id}"></span></td>
               </tr>
@@ -73,6 +73,16 @@ function setInputs(data, inputs) {
         let subtotalHTML = document.getElementById(`subTotal${articulo.id}`);
         subtotalHTML.innerHTML =
           parseFloat(articulo.unitCost) * parseFloat(input.value);
+        //Actualizar el articulo.count del localstorage
+        let newCarrito = JSON.parse(localStorage.getItem('carrito'));
+        console.log(newCarrito);
+
+        for (let i = 0; i < newCarrito.length; i++) {
+          if (newCarrito[i].id === articulo.id) {
+            newCarrito[i].count = input.value;
+          }
+        }
+        localStorage.setItem('carrito', JSON.stringify(newCarrito));
       }
     });
   }
