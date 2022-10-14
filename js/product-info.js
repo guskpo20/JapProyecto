@@ -48,7 +48,7 @@ async function getProduct(id) {
             <h2>${product.name}</h2>
             <button id="agregarAlCarrito" class="agregaAlCarrito">Comprar</button>
           </div>
-          <h4 id="mensajeComprado" class="sacarAgregadoAlCarrito">Agregado al Carrito</h4>
+          <h4 id="mensajeComprado" class="sacarAgregadoAlCarrito"></h4>
           <hr/>
           <b>Precio</b>
           <p>${product.currency} ${product.cost}</p>
@@ -74,10 +74,8 @@ async function getProduct(id) {
     for (const arti of carrito) {
       if (arti.id === product.id) {
         existente = true;
-        arti.count++;
       }
     }
-    localStorage.setItem('carrito', JSON.stringify(carrito));
 
     if (!existente) {
       let newProduct = {
@@ -97,14 +95,25 @@ async function getProduct(id) {
         newCarrito.push(newProduct);
         localStorage.setItem('carrito', JSON.stringify(newCarrito));
       }
+      //Aca agregado al carrito
+      let mensaje = document.getElementById('mensajeComprado');
+      mensaje.innerText = 'Agregado al Carrito';
+      mensaje.classList.add('agregadoAlCarrito');
+      mensaje.classList.remove('sacarAgregadoAlCarrito');
+      setTimeout(() => {
+        mensaje.classList.remove('agregadoAlCarrito');
+        mensaje.classList.add('sacarAgregadoAlCarrito');
+      }, 2000);
+    } else {
+      let mensaje = document.getElementById('mensajeComprado');
+      mensaje.innerText = 'Objeto ya en el carrito';
+      mensaje.classList.add('existenteEnElCarrito');
+      mensaje.classList.remove('sacarAgregadoAlCarrito');
+      setTimeout(() => {
+        mensaje.classList.remove('existenteEnElCarrito');
+        mensaje.classList.add('sacarAgregadoAlCarrito');
+      }, 2000);
     }
-    let mensaje = document.getElementById('mensajeComprado');
-    mensaje.classList.add('agregadoAlCarrito');
-    mensaje.classList.remove('sacarAgregadoAlCarrito');
-    setTimeout(() => {
-      mensaje.classList.remove('agregadoAlCarrito');
-      mensaje.classList.add('sacarAgregadoAlCarrito');
-    }, 2000);
   });
 
   let productosRelacionados = product.relatedProducts;

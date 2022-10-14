@@ -2,15 +2,45 @@ const URL = 'https://japceibal.github.io/emercado-api/user_cart/';
 const tabla = document.getElementById('tableBody');
 let datos = [];
 let inputs = '';
-let repetidos = [];
 
 async function getData() {
   let data = await fetch(URL + '25801.json');
   data = await data.json();
-  for (const articulo of data.articles) {
-    setCart(articulo);
+  let dataLS = JSON.parse(localStorage.getItem('carrito'));
+  if (!dataLS) {
+    dataLS = [];
   }
-  datos.push(...data.articles);
+  for (const articulo of data.articles) {
+    let existente = false;
+    for (const articuloLS of dataLS) {
+      if (articulo.id === articuloLS.id) {
+        existente = true;
+      }
+    }
+    if (!existente) {
+      console.log(existente);
+      setCart(articulo);
+      let newProduct = {
+        id: articulo.id,
+        name: articulo.name,
+        count: 1,
+        unitCost: articulo.unitCost,
+        currency: articulo.currency,
+        image: articulo.image,
+      };
+      if (JSON.parse(localStorage.getItem('carrito'))) {
+        let newCarrito = JSON.parse(localStorage.getItem('carrito'));
+        newCarrito = [...newCarrito, newProduct];
+        localStorage.setItem('carrito', JSON.stringify(newCarrito));
+      } else {
+        let newCarrito = [];
+        newCarrito.push(newProduct);
+        localStorage.setItem('carrito', JSON.stringify(newCarrito));
+      }
+      location.reload();
+    }
+    datos.push(articulo);
+  }
 }
 
 getData();
@@ -32,11 +62,6 @@ function setCart(articulo) {
   if (!articulo) {
     return;
   }
-  let articuloRepetido = document.getElementById(articulo.id);
-  if (articuloRepetido) {
-    repetidos.push(articulo);
-    return;
-  }
   tabla.innerHTML += `
             <tr>
               <th scope="row">
@@ -56,7 +81,8 @@ function setCart(articulo) {
   
   `;
   let subtotalHTML = document.getElementById(`subTotal${articulo.id}`);
-  subtotalHTML.innerHTML = parseFloat(articulo.unitCost);
+  subtotalHTML.innerHTML =
+    parseFloat(articulo.unitCost) * parseFloat(articulo.count);
 }
 
 function setInputs(data, inputs) {
@@ -75,7 +101,6 @@ function setInputs(data, inputs) {
           parseFloat(articulo.unitCost) * parseFloat(input.value);
         //Actualizar el articulo.count del localstorage
         let newCarrito = JSON.parse(localStorage.getItem('carrito'));
-        console.log(newCarrito);
 
         for (let i = 0; i < newCarrito.length; i++) {
           if (newCarrito[i].id === articulo.id) {
@@ -91,11 +116,4 @@ function setInputs(data, inputs) {
 window.addEventListener('load', (event) => {
   inputs = document.getElementsByClassName('inputAEscuchar');
   setInputs(datos, inputs);
-  for (const repetido of repetidos) {
-    let input = document.getElementById(repetido.id);
-    input.value++;
-    let subtotalHTML = document.getElementById(`subTotal${repetido.id}`);
-    subtotalHTML.innerHTML =
-      parseFloat(repetido.unitCost) * parseFloat(input.value);
-  }
 });

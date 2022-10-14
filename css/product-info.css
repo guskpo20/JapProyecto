@@ -115,6 +115,16 @@
   color: white;
 }
 
+.existenteEnElCarrito {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: red;
+  color: white;
+}
+
 .sacarAgregadoAlCarrito {
   display: none;
 }
