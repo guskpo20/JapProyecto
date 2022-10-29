@@ -192,3 +192,16 @@ a.custom-card:hover {
 footer {
   text-align: left;
 }
+
+.invalidInput {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.escondido {
+  display: none;
+}
+
+.inputInvalido {
+  border: 2px solid red;
+}

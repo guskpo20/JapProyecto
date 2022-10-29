@@ -88,81 +88,180 @@
           <tbody id="tableBody"></tbody>
         </table>
       </div>
-      <div
-        id="datosEnvio"
-        class="d-flex flex-column justify-content-center mt-5 mx-5"
-      >
-        <h3 class="mx-4">Tipo de envio</h3>
-        <div class="form-check mx-4">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            checked
-          />
-          <label class="form-check-label" for="flexRadioDefault1">
-            Premium 2 a 5 dias (15%)
-          </label>
+      <form id="formCompra" class="mx-5 mt-5 w-auto container">
+        <div class="alert alert-success escondido" id="compraRealizada" role="alert">
+          Has comprado con exito!
         </div>
-        <div class="form-check mx-4">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault1">
-            Express 5 a 8 dias (7%)
-          </label>
-        </div>
-        <div class="form-check mx-4">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault3"
-          />
-          <label class="form-check-label" for="flexRadioDefault2">
-            Standard 12 a 15 dias (5%)
-          </label>
-        </div>
-
-        <form class="mx-4 mt-5">
-          <h3>Direccion de envio</h3>
-          <div class="form-row">
+        <div class="mx-5 row">
+          <div class="col">
+            <h3>Tipo de envio</h3>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="0.15"
+                checked
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                Premium 2 a 5 dias (15%)
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                value="0.07"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                Express 5 a 8 dias (7%)
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault3"
+                value="0.05"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                Standard 12 a 15 dias (5%)
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Direccion de envio</h3>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputStreet4">Calle</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputEmail4"
+                  placeholder="Calle"
+                />
+                <p class="invalidInput escondido" id="invalidCalle">Debe Ingresar Calle</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputNumber4">Numero</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputNumber4"
+                  placeholder="Numero de puerta"
+                />
+                <p class="invalidInput escondido" id="invalidNumero">Debe Ingresar Numero</p>
+              </div>
+            </div>
             <div class="form-group col-md-6">
-              <label for="inputStreet4">Calle</label>
+              <label for="inputCorner">Esquina</label>
               <input
                 type="text"
                 class="form-control"
-                id="inputEmail4"
-                placeholder="Calle"
+                id="inputCorner"
+                placeholder="Esq Soriano"
               />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputNumber4">Numero</label>
-              <input
-                type="number"
-                class="form-control"
-                id="inputNumber4"
-                placeholder="Numero de puerta"
-              />
+              <p class="invalidInput escondido" id="invalidEsquina">Debe Ingresar Esquina</p>
             </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputCorner">Esquina</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputCorner"
-              placeholder="Esq Soriano"
-            />
+        </div>
+        <hr />
+        <div id="subtotales">
+          <div class="container align-content-center">
+            <div class="row border mb-3">
+              <div class="col pt-2">
+                <h2>Subtotal</h2>
+                <p class="text-muted">Costo de los productos</p>
+              </div>
+              <p class="col mt-3">USD <span id="subtotal">15200</span></p>
+            </div>
+            <div class="row border mb-3">
+              <div class="col pt-2">
+                <h2>Costo de Envio</h2>
+                <p class="text-muted">Segun el tipo de envio</p>
+              </div>
+              <p class="col mt-3">USD <span id="costoEnvio">15200</span></p>
+            </div>
+            <div class="row border">
+              <div class="col pt-2">
+                <h2>Total ($)</h2>
+              </div>
+              <p class="col mt-3">USD <span id="total">15200</span></p>
+            </div>
           </div>
+        </div>
+        <hr />
+        <h3>Forma De Pago</h3>
+        <div>
+          <p>
+            <span id="formaDePagoTexto" class="mx-3">No Has Seleccionado</span>
+            <p class="invalidInput escondido" id="invalidPago">Selecciona Metodo De Pago y llena todos los datos</p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+              Seleccionar
+            </button>
 
-          <!--<button type="submit" class="btn btn-primary">Comprar</button>-->
-        </form>
-      </div>
+            <button type="submit" class="btn btn-primary mx-5 w-100 mt-5">
+              Comprar
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Forma de Pago</h5>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefaultCredito"
+                        id="flexRadioDefaultCredito"
+                        value="credito"
+                      />
+                      <label class="form-check-label" for="flexRadioDefaultCredito">
+                        Tarjeta de credito
+                      </label>
+                      <hr>
+                      <label for="tarjeta">Numero de Tarjeta</label>
+                      <input class="inputCredito" type="number" name="tarjeta" id="tarjeta">
+                      <br>
+                      <label for="codigo">Codigo de seg</label>
+                      <input class="inputCredito" type="number" name="codigo" id="codigo">
+                      <br>
+                      <label for="vencimiento">Vencimiento (MM/AA)</label>
+                      <input class="inputCredito mb-4" type="text" name="vencimiento" id="vencimiento">
+                      <br>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefaultCredito"
+                        id="flexRadioDefaultCredito1"
+                        value="bancaria"
+                      />
+                      <label class="form-check-label" for="flexRadioDefaultCredito1">
+                        Transferencia bancaria
+                      </label>
+                      <hr>
+                      <label for="cuenta">Numero de cuenta</label>
+                      <input class="inputBancaria" type="number" name="cuenta" id="cuenta" disabled>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p>
+        </div>
+      </form>
     </main>
     <footer class="text-muted">
       <div class="container">
