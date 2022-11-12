@@ -6,14 +6,15 @@ let relatedContainer = document.getElementById('relatedContainer');
 let comprarBtn = '';
 
 async function getProduct(id) {
-  let product = await fetch(
+  let product = await getJSONData(
     `https://japceibal.github.io/emercado-api/products/${id}.json`
   );
-  product = await product.json();
-  let comments = await fetch(
+  product = product.data;
+  let comments = await getJSONData(
     `https://japceibal.github.io/emercado-api/products_comments/${id}.json`
   );
-  comments = await comments.json();
+  comments = comments.data;
+
   let commentsHtml = '';
   for (const comment of comments) {
     let stars = '';
@@ -55,28 +56,27 @@ async function getProduct(id) {
   }
   container.innerHTML = `
   <div class="product">
-  <div class="productInfo">
-          <div class="d-flex justify-content-between">
-            <h2>${product.name}</h2>
-            <button id="agregarAlCarrito" class="agregaAlCarrito">Comprar</button>
-          </div>
-          <h4 id="mensajeComprado" class="sacarAgregadoAlCarrito"></h4>
-          <hr/>
-          <b>Precio</b>
-          <p>${product.currency} ${product.cost}</p>
-          <b>Descripcion</b>
-          <p>${product.description} </p>
-          <b>Categoria</b>
-          <p>${product.category}</p>
-          <b>Cantidad de vendidos</b>
-          <p>${product.soldCount}</p>
-          <b>Imagenes Ilustrativas</b>
-          </div>
-          <div class="imgContainer">
-            ${images}
-          </div>
-        </div>
+    <div class="productInfo">
+      <div class="d-flex justify-content-between">
+        <h2>${product.name}</h2>
+        <button id="agregarAlCarrito" class="agregaAlCarrito">Comprar</button>
       </div>
+      <h4 id="mensajeComprado" class="sacarAgregadoAlCarrito"></h4>
+      <hr/>
+      <b>Precio</b>
+      <p>${product.currency} ${product.cost}</p>
+      <b>Descripcion</b>
+      <p>${product.description} </p>
+      <b>Categoria</b>
+      <p>${product.category}</p>
+      <b>Cantidad de vendidos</b>
+      <p>${product.soldCount}</p>
+      <b>Imagenes Ilustrativas</b>
+    </div>
+      <div class="imgContainer">
+        ${images}
+      </div>
+  </div>
   
   `;
   comprarBtn = document.getElementById('agregarAlCarrito');
@@ -231,11 +231,46 @@ enviarComentBtn.addEventListener('click', (e) => {
 function agregarComentario(user, dateTime, stars, comment) {
   let comentariosActual = comentariosContainer.innerHTML;
   comentariosContainer.innerHTML = `
-    <div class="comment">
-        <div class="commentInfo">
-        <b>${user}</b> - <p>${dateTime}</p> - <p>${stars}</p>
-        </div>
+  <div class="border p-2 w-75">
+    <div class="row">
+      <div class="col-md-4">
+          <b>${user}</b>
+      </div>
+      <div class="col-md-4">
+          <p>${dateTime}</p>
+      </div>
+      <div class="col-md-4">
+          <p>${stars}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <p>${comment}</p>
-    </div>`;
+      </div>
+    </div>
+  </div>`;
   comentariosContainer.innerHTML += comentariosActual;
 }
+
+/*
+
+<div class="border p-2 w-75">
+      <div class="row">
+        <div class="col-md-4">
+            <b>${user}</b>
+        </div>
+        <div class="col-md-4">
+            <p>${dateTime}</p>
+        </div>
+        <div class="col-md-4">
+            <p>${stars}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p>${comment}</p>
+        </div>
+      </div>
+    </div>`;
+
+*/

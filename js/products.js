@@ -1,14 +1,12 @@
 const itemsContainer = document.getElementById('container');
 let nombreCat = document.getElementById('nombreCat');
 async function getData() {
-  let promise = await fetch(
+  let datos = await getJSONData(
     `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem(
       'catID'
     )}.json`
   );
-  let data = await promise.json();
-  nombreCat.innerText = data.catName;
-  setHtml(data.products);
+  setHtml(datos.data.products);
 }
 let ids = [];
 

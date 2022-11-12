@@ -83,7 +83,7 @@ function setCart(articulo) {
               </td>
               <td class="align-middle">USD <span class="subtotales" id="subTotal${articulo.id}"></span></td>
               <td class="align-middle"><button class="btn-danger borrarArticulo" name="${articulo.id}">Eliminar</button></td>
-              </tr>
+            </tr>
   
   `;
   let nuevoPrecio = articulo.unitCost;
