@@ -17,15 +17,19 @@ function setHtml(data) {
   for (const car of data) {
     itemsContainer.innerHTML += `
     
-          <a  class="item" id="${car.id}">
-            <img src="${car.image}" alt="Foto de ${car.name}" />
-            <div class="item-info">
-                <div class="item-info-primerRenglon">
-                    <h3><span class="nombre">${car.name}</span> - ${car.currency}<span class="costo">${car.cost}</span></h3>
-                    <p class="cantidadVendidos">${car.soldCount} vendidos</p>
-                </div>
-                <p class="descriptionItem">${car.description}</p>
-            </div>
+          <a  class="list-group-item list-group-item-action cursor-active" id="${car.id}">
+            <div class="row">
+              <div class="col-3">
+                <img src="${car.image}" alt="Foto de ${car.name}" class="img-thumbnail"/>
+              </div> 
+              <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3><span class="mb-1">${car.name}</span> - ${car.currency}<span class="costo">${car.cost}</span></h3>
+                        <p class="text-muted">${car.soldCount} vendidos</p>
+                    </div>
+                    <p class="mb-1">${car.description}</p>
+              </div>
+            </div>  
           </a>
         `;
     ids.push(car.id);

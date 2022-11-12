@@ -27,11 +27,23 @@ async function getProduct(id) {
       stars += `<span class="fa fa-star"></span>`;
     }
     commentsHtml += `
-    <div class="comment">
-        <div class="commentInfo">
-        <b>${comment.user}</b> - <p>${comment.dateTime}</p> - <p>${stars}</p>
+    <div class="border p-2 w-75">
+      <div class="row">
+        <div class="col-md-4">
+            <b>${comment.user}</b>
         </div>
-        <p>${comment.description}</p>
+        <div class="col-md-4">
+            <p>${comment.dateTime}</p>
+        </div>
+        <div class="col-md-4">
+            <p>${stars}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p>${comment.description}</p>
+        </div>
+      </div>
     </div>`;
   }
 
@@ -122,7 +134,7 @@ async function getProduct(id) {
       relatedContainer.innerHTML = `
       <div class="carousel-item active">
               <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
-              <div class="carousel-caption d-none d-md-block">
+              <div class="carousel-caption  d-md-block">
                 <h5 class="relatedName">${productosRelacionados[i].name}</h5>
                 <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
               </div>
@@ -131,7 +143,7 @@ async function getProduct(id) {
       relatedContainer.innerHTML += `
       <div class="carousel-item">
               <img src="${productosRelacionados[i].image}" class="d-block w-100"/>
-              <div class="carousel-caption d-none d-md-block">
+              <div class="carousel-caption  d-md-block">
                 <h5 class="relatedName">${productosRelacionados[i].name}</h5>
                 <button onclick="guardarId(${productosRelacionados[i].id})">Ir!</button>
               </div>

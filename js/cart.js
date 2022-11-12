@@ -8,13 +8,13 @@ let formasDePago = document.getElementsByName('flexRadioDefaultCredito');
 let formCompra = document.getElementById('formCompra');
 
 async function getData() {
-  if(!JSON.parse(localStorage.getItem('carrito'))){
+  if (!JSON.parse(localStorage.getItem('carrito'))) {
     let data = await fetch(URL + '25801.json');
     data = await data.json();
     let dataLS = JSON.parse(localStorage.getItem('carrito'));
-  if (!dataLS) {
-    dataLS = [];
-  }
+    if (!dataLS) {
+      dataLS = [];
+    }
     for (const articulo of data.articles) {
       let existente = false;
       for (const articuloLS of dataLS) {
@@ -41,13 +41,11 @@ async function getData() {
           newCarrito.push(newProduct);
           localStorage.setItem('carrito', JSON.stringify(newCarrito));
         }
-        setearTotales()
+        setearTotales();
       }
       datos.push(articulo);
     }
   }
-  
-  
 }
 
 getData();
@@ -74,7 +72,7 @@ function setCart(articulo) {
               <th scope="row">
                 <img
                   style="max-width: 100px"
-                  class="img-fluid"
+                  class="img-thumbnail"
                   src="${articulo.image}"
                 />
               </th>
@@ -94,30 +92,28 @@ function setCart(articulo) {
   }
   let subtotalHTML = document.getElementById(`subTotal${articulo.id}`);
   subtotalHTML.innerHTML = nuevoPrecio * parseFloat(articulo.count);
-  
 }
 
-function setBorrar(){
-  let eliminarBtns = document.getElementsByClassName("borrarArticulo")
+function setBorrar() {
+  let eliminarBtns = document.getElementsByClassName('borrarArticulo');
   for (const eliminarBtn of eliminarBtns) {
-    eliminarBtn.addEventListener("click", () =>{
+    eliminarBtn.addEventListener('click', () => {
       if (JSON.parse(localStorage.getItem('carrito'))) {
-        let articuloBorrar =""
+        let articuloBorrar = '';
         let carrito = JSON.parse(localStorage.getItem('carrito'));
         let newCarrito = [];
         for (const item of carrito) {
-          if(parseFloat(item.id) === parseFloat(eliminarBtn.name)){
-            articuloBorrar = document.getElementById(`item${item.id}`)
-          }else{
-            newCarrito.push(item)
+          if (parseFloat(item.id) === parseFloat(eliminarBtn.name)) {
+            articuloBorrar = document.getElementById(`item${item.id}`);
+          } else {
+            newCarrito.push(item);
           }
         }
         localStorage.setItem('carrito', JSON.stringify(newCarrito));
         tabla.removeChild(articuloBorrar);
-        setearTotales()
+        setearTotales();
       }
-      
-    })
+    });
   }
 }
 
@@ -164,15 +160,15 @@ window.addEventListener('load', (event) => {
   costoEnvio.innerHTML = Math.round(
     parseFloat(subtotal.innerHTML) * opcionEnvio
   );
-  setBorrar()
+  setBorrar();
   formCompra.addEventListener('submit', (e) => {
     e.preventDefault();
 
     //Hay articulos para comprar
     let hayArticulos = false;
     let carrito = JSON.parse(localStorage.getItem('carrito'));
-    if(carrito.length > 0 ){
-      hayArticulos=true;
+    if (carrito.length > 0) {
+      hayArticulos = true;
     }
 
     //Envio name = flexRadioDefault, tiene que estar chequeada alguna forma de envio
@@ -298,8 +294,8 @@ window.addEventListener('load', (event) => {
         let textoPagoInvalido = document.getElementById('invalidPago');
         textoPagoInvalido.classList.add('escondido');
       }
-      if(!hayArticulos){
-        alert("Debes comprar almenos un articulo")
+      if (!hayArticulos) {
+        alert('Debes comprar almenos un articulo');
       }
     }
   });
