@@ -85,10 +85,110 @@
       </div>
     </nav>
     <main>
+      <div class="alert alert-success d-none" id="correctAlert" role="alert">
+        Actualizo correctamente!
+      </div>
       <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+        <div class="mb-5 mt-5">
+          <div class="d-flex justify-content-between">
+            <h1 class="mb-5" style="font-size: 3rem">Perfil</h1>
+
+            <img
+              style="width: 220px; height: 220px; border-radius: 100%"
+              src="./img/img_perfil.png"
+              alt=""
+              id="profileImg"
+            />
+          </div>
         </div>
+
+        <hr />
+      </div>
+      <div class="container">
+        <form id="formulario">
+          <div class="row">
+            <div class="col">
+              <label for="name">Primer Nombre*</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Primer Nombre"
+                name="name"
+                id="name"
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="secondName">Segundo Nombre</label>
+              <input
+                name="secondName"
+                type="text"
+                class="form-control"
+                placeholder="Segundo Nombre"
+                id="secondName"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="apellido">Primer Apellido*</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Primer Apellido"
+                name="apellido"
+                id="lastName"
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="secondLastName">Segundo Apellido</label>
+              <input
+                name="secondLastName"
+                type="text"
+                class="form-control"
+                placeholder="Segundo Apellido"
+                id="secondLastName"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="email">E-mail*</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="E-mail"
+                name="email"
+                id="email"
+                disabled
+              />
+            </div>
+            <div class="col">
+              <label for="imagen">Imagen de perfil</label>
+              <input
+                type="file"
+                id="imagen"
+                name="imagen"
+                accept="image/png, image/jpeg"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col mt-1">
+              <label for="telefono">Telefono de contacto</label>
+              <input
+                type="number"
+                placeholder="Telefono de contacto"
+                name="telefono"
+                id="telefono"
+              />
+            </div>
+            <div class="col"></div>
+          </div>
+          <hr />
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
       </div>
     </main>
     <footer class="text-muted">

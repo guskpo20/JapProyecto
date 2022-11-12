@@ -49,6 +49,8 @@ let showUser = function () {
     let li = document.getElementById('dropdownMenuButton1');
     if (email) {
       li.innerHTML = `${email}`;
+    } else {
+      window.location = 'index.html';
     }
   } catch {}
 };
